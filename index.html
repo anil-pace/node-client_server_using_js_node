@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h3>client-server interaction page</h3>
+    <button id="myBtn">fetch profile</button>
+    <div id="result">Results</div>
+    <script>
+      document.getElementById("myBtn").onclick = () => {
+        const url = "http://localhost:5000/home/";
+        fetch(url)
+          .then((data) => data.json())
+          .then((res) => alert(JSON.stringify(res)));
+      };
+    </script>
+  </body>
+</html>
