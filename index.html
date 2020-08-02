@@ -3,58 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="/style.css" /> -->
   </head>
-  <body>
-    <h1>Index.html page</h1>
 
+  <body>
+    <h1>fetch api</h1>
     <form id="myForm">
       <input type="text" name="username" />
-      <input type="password" name="password" />
-      <button type="submit">submit</button>
+      <input type="password" name="passwd" />
+      <button type="submit">submit it</button>
     </form>
-    <hr />
-    <button id="postBtn">post to Backend</button>
-    <button id="getBtn">fetch from Backend</button>
-    <div id="result"></div>
-    <script>
-      var data = {
-        name: "anil",
-        status: "programmer",
-        nationality: "indian",
-      };
-      document.getElementById("postBtn").onclick = () => {
-        const url = "http://localhost:5000/send-to-backend";
-        fetch(url, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((data) => data.json())
-          .then((res) => {
-            console.log("response coming from backend is: ");
-            console.log(res);
-          });
-      };
 
-      // document.getElementById("getBtn").onclick = () => {
-      //   const url = "http://localhost:5000/fetchData/";
-      //   fetch(url)
-      //     .then((data) => data.json())
-      //     .then((res) => {
-      //       console.log(res);
-      //       document.getElementById("result").innerHTML = `
-      //       <ul>
-      //         <li> Name: ${res.name}</li>
-      //         <li> Status: ${res.status}</li>
-      //         <li> Country: ${res.address}</li>
-      //       <ul>
-      //       `;
-      //     });
-      // };
+    <script>
+      document.getElementById("myForm").onsubmit = (e) => {
+        e.preventDefault();
+        const url = "http://localhost:5000/send-to-backend";
+
+        var data = new URLSearchParams();
+        console.log(e.target);
+        for (const pair of new FormData(e.target)) {
+          // console.log(pair)
+          data.append(pair[0], pair[1]);
+        }
+
+        fetch(url, {
+          method: "post", // can be "put", "delete" or "post"
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((res2) => console.log(res2));
+      };
     </script>
   </body>
 </html>
