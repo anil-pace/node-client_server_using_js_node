@@ -18,10 +18,18 @@ module.exports = (app) => {
         res.send("you requested user no: " + req.params.id)
     })
 
-    /*
-    app.get("/home", (req, res) => {
-        res.send({ name: "anil", status: "coder" });
+
+    app.get("/fetchData", (req, res) => {
+        res.send({ name: "anil", status: "coder", address: "India" });
     })
+
+    app.post("/send-to-backend", (req, res) => {
+        console.log("data being send to backend is: ");
+        console.log(req.body);
+        res.send(JSON.stringify(req.body))
+    })
+
+    /*
 
     app.get("/sendHtmlFile", (req, res) => {
         // res.sendFile(path.join(__dirname + "/index.html"))

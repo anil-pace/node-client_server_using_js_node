@@ -4,13 +4,20 @@ console.log(getSum.mul(4, 5));
 const express = require("express");
 const app = express();
 const path = require("path");
-var serveStatic = require('serve-static')
 const port = 5000;
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 /* middlewares */
 app.use(function (req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET");
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
 
     // Pass to next layer of middleware
     next();
@@ -18,7 +25,7 @@ app.use(function (req, res, next) {
 
 // serving static files
 //app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, 'public')))
+//app.use(express.static(path.join(__dirname, 'public')))
 /* --- */
 
 
