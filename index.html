@@ -13,7 +13,7 @@
     <div id="result"></div>
     <script>
       document.getElementById("myBtn").onclick = () => {
-        const url = "http://localhost:5000/home/";
+        const url = "http://localhost:5000/fetchData/";
         fetch(url)
           .then((data) => data.json())
           .then((res) => {
@@ -22,6 +22,7 @@
             <ul>
               <li> Name: ${res.name}</li>
               <li> Status: ${res.status}</li>
+              <li> Country: ${res.address}</li>
             <ul>
             `;
           });
