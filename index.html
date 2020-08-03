@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/style.css" />
   </head>
 
   <body>
@@ -55,7 +55,7 @@
       var data = {
         name: "anil",
         status: "programmer",
-        nationality: "indian",
+        nationality: "Indian",
       };
       document.getElementById("postBtn").onclick = () => {
         const url = "http://localhost:5000/send-to-backend";
@@ -96,7 +96,7 @@
         }
 
         fetch(url, {
-          method: "post", // can be "put", "delete" or "post"
+          method: "POST", // can be "put", "delete" or "post"
           body: data,
         })
           .then((res) => res.json())

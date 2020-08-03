@@ -7,14 +7,19 @@ const Wish = require("./models/wish")
 mongoose.connect(mongourl)
 
 var data = {
-    name: "anil", status: "coder"
+    name: "anil",
+    status: "coder",
+    country: "India"
 }
 
 module.exports = (app) => {
 
+    // serving static files
+    //app.use(express.static("public"))
+
     app.get("/", (req, res) => {
-        //res.send("Hello !!! This is Root page");
-        res.render("home", { data: data })
+        res.sendFile(__dirname + "/index.html")
+        //res.render("home", { data: data })
     })
 
     app.get("/about", (req, res) => {
@@ -31,10 +36,17 @@ module.exports = (app) => {
     })
 
     app.post("/send-to-backend", (req, res) => {
-        console.log("data being send to backend is: ");
+        console.log("data being send from backend to frontend is: ");
         console.log(req.body);
         res.send(JSON.stringify(req.body))
     })
+
+    app.post('/sent-form-data', (req, res) => {
+        console.log(req.body)
+        res.send(JSON.stringify(req.body))
+    })
+
+
 
     app.post("/sent", (req, res) => {
         const item = "fukcoff";
@@ -48,7 +60,6 @@ module.exports = (app) => {
         // res.send(data);
         // console.log(data)
     })
-
     /*
 
     app.get("/sendHtmlFile", (req, res) => {
