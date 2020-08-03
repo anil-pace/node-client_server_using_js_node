@@ -1,3 +1,10 @@
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const { mongourl } = require("./config/keys")
+const Wish = require("./models/wish")
+
+mongoose.connect(mongourl)
 
 var data = {
     name: "anil", status: "coder"
@@ -27,6 +34,19 @@ module.exports = (app) => {
         console.log("data being send to backend is: ");
         console.log(req.body);
         res.send(JSON.stringify(req.body))
+    })
+
+    app.post("/sent", (req, res) => {
+        const item = "fukcoff";
+        const Item = new Wish({
+            wish: req.body.item
+        });
+        Item.save().then(data => {
+            console.log("saved")
+        })
+        // data.push(req.body);
+        // res.send(data);
+        // console.log(data)
     })
 
     /*
