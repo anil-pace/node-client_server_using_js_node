@@ -1,21 +1,20 @@
 body {
-  background: black;
-  color: white;
+  background-color: lightseagreen;
+  color: black;
   text-align: center;
 }
 .container {
   display: flex;
-  background-color: aqua;
+  background-color: yellow;
   height: 50vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
 }
 
-left {
+.left {
   display: flex;
-  justify-content: center;
-  /* align-items: center; */
   flex-direction: column;
   line-height: 3;
+  border: 1px solid black;
 }

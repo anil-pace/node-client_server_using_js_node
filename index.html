@@ -5,17 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <h1>fetch api</h1>
-    <form id="myForm">
-      <input type="text" name="username" />
-      <input type="password" name="passwd" />
-      <button type="submit">submit it</button>
-    </form>
+    <h1>Client - Server Communication</h1>
+    <div class="container">
+      <div class="left">
+        <div>
+          <button id="getBtn">fetch from Backend</button>
+        </div>
+
+        <div>
+          <button id="postBtn">post to Backend</button>
+        </div>
+
+        <form id="myForm">
+          <input type="text" name="username" />
+          <input type="password" name="passwd" />
+          <button type="submit">submit it</button>
+        </form>
+      </div>
+      <div class="right">
+        <h1 id="result">RESULTs:</h1>
+      </div>
+    </div>
 
     <script>
+      /* START - Fetch from routes */
+      document.getElementById("getBtn").onclick = () => {
+        const url = "http://localhost:5000/fetchData/";
+        fetch(url)
+          .then((data) => data.json())
+          .then((res) => {
+            console.log(res);
+            document.getElementById("result").innerHTML = `
+            <h1> fetching from raw json from backend </h1>
+            <ul>
+              <li> Name: ${res.name}</li>
+              <li> Status: ${res.status}</li>
+              <li> Country: ${res.address}</li>
+            <ul>
+            `;
+          });
+      };
+      /*  END */
+
+      /* START - POST  JSON to backend */
+      var data = {
+        name: "anil",
+        status: "programmer",
+        nationality: "indian",
+      };
+      document.getElementById("postBtn").onclick = () => {
+        const url = "http://localhost:5000/send-to-backend";
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((data) => data.json())
+          .then((res) => {
+            console.log("response coming from backend is: ");
+            console.log(res);
+            document.getElementById("result").innerHTML = `
+            <h1> Sending  raw json to backend </h1>
+            <ul>
+              <li> Name: ${res.name}</li>
+              <li> Status: ${res.status}</li>
+              <li> Country: ${res.nationality}</li>
+            <ul>
+            `;
+          });
+      };
+      /*  END */
+
+      /* START - POST FORM DATA  to backend */
+
       document.getElementById("myForm").onsubmit = (e) => {
         e.preventDefault();
         const url = "http://localhost:5000/send-to-backend";
@@ -32,7 +100,16 @@
           body: data,
         })
           .then((res) => res.json())
-          .then((res2) => console.log(res2));
+          .then((res2) => {
+            console.log(res2);
+            document.getElementById("result").innerHTML = `
+            <h1> Sending  form data to backend </h1><ul>
+                <li> name: ${res2.username}</li>
+                <li> password: ${res2.passwd} </li>
+            </ul>
+              `;
+          });
+        /*  END */
       };
     </script>
   </body>

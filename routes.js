@@ -15,7 +15,7 @@ module.exports = (app) => {
     })
 
     app.get("/profile/:id", (req, res) => {
-        res.send("you requested user no: " + req.params.id)
+        res.render("you requested user no: " + req.params.id)
     })
 
 
