@@ -31,8 +31,9 @@ app.use(function (req, res, next) {
 
 
 require("./routes")(app);
-
-app.set("view engine", "ejs");
+//app.set('views', './views');
+//app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.listen(port, () => {
     console.log("server is running on port 5000... ")

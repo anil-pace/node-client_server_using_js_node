@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const { mongourl } = require("./config/keys")
 const Wish = require("./models/wish")
+const path = require("path");
 
 mongoose.connect(mongourl)
 
@@ -15,11 +16,14 @@ var data = {
 module.exports = (app) => {
 
     // serving static files
-    //app.use(express.static("public"))
+    app.use(express.static("public"))
+
 
     app.get("/", (req, res) => {
-        res.sendFile(__dirname + "/index.html")
-        //res.render("home", { data: data })
+        //res.sendFile(__dirname + "/index.html")
+        // console.log("__dirname");
+        //console.log(__dirname);
+        res.render("home", { data: data })
     })
 
     app.get("/about", (req, res) => {
@@ -27,7 +31,7 @@ module.exports = (app) => {
     })
 
     app.get("/profile/:id", (req, res) => {
-        res.render("you requested user no: " + req.params.id)
+        res.send("you requested user no: " + req.params.id)
     })
 
 
@@ -69,4 +73,3 @@ module.exports = (app) => {
     })
     */
 }
-

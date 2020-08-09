@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
@@ -40,7 +40,7 @@
           .then((res) => {
             console.log(res);
             document.getElementById("result").innerHTML = `
-            <h1> fetching from raw json from backend </h1>
+            <h1> fetching json from backend </h1>
             <ul>
               <li> Name: ${res.name}</li>
               <li> Status: ${res.status}</li>
