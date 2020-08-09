@@ -28,12 +28,18 @@ app.use(function (req, res, next) {
     next();
 });
 
+// parse application/x-wwww-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 
 require("./routes")(app);
 //app.set('views', './views');
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 app.listen(port, () => {
     console.log("server is running on port 5000... ")

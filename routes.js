@@ -56,14 +56,19 @@ module.exports = (app) => {
 
 
 
-    app.post("/sent", (req, res) => {
-        const item = "fukcoff";
-        const Item = new Wish({
-            wish: req.body.item
-        });
-        Item.save().then(data => {
-            console.log("saved")
-        })
+    app.post("/send", (req, res) => {
+        console.log(req.body);
+        todos.push(req.body.item);
+        res.send(todos);
+
+
+        // const item = "fukcoff";
+        // const Item = new Wish({
+        //     wish: req.body.item
+        // });
+        // Item.save().then(data => {
+        //     console.log("saved")
+        // })
         // data.push(req.body);
         // res.send(data);
         // console.log(data)
