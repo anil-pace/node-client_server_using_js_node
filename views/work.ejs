@@ -11,9 +11,9 @@
 
   <body>
     <%- include ('partials/nav') -%>
-    <h1>Rendered ABOUT.ejs page</h1>
+    <h1>Rendered WORK.ejs page</h1>
 
-    <form id="aboutForm">
+    <form id="workForm">
       <input type="text" name="item" />
       <button type="submit">add</button>
     </form>
@@ -25,7 +25,7 @@
     </ul>
 
     <script>
-      document.getElementById("aboutForm").onsubmit = (e) => {
+      document.getElementById("workForm").onsubmit = (e) => {
         e.preventDefault();
         const url = "http://localhost:5000/send";
 

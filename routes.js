@@ -25,9 +25,9 @@ module.exports = (app) => {
         res.render("home", { data: data })
     })
 
-    app.get("/about", (req, res) => {
-        //res.send("This is about page");
-        res.render("about", { todos: todos })
+    app.get("/work", (req, res) => {
+        //res.send("This is work page");
+        res.render("work", { todos: todos })
     })
 
     app.get("/profile/:id", (req, res) => {
