@@ -12,6 +12,9 @@
   <body>
     <%- include ('partials/nav') -%>
     <h1>Rendered HOME.ejs page</h1>
+    <h2>
+      <%= data.name %> <%= data.status %>
+    </h2>
     <form id="myForm">
       <input type="text" name="item" />
       <button type="submit" class="waves-effect waves-light btn">add</button>

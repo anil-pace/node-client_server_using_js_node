@@ -13,6 +13,8 @@ var data = {
     country: "India"
 }
 
+const todos = ["code", "eat", "sleep"];
+
 module.exports = (app) => {
 
     // serving static files
@@ -20,18 +22,20 @@ module.exports = (app) => {
 
 
     app.get("/", (req, res) => {
-        //res.sendFile(__dirname + "/index.html")
-        // console.log("__dirname");
-        //console.log(__dirname);
         res.render("home", { data: data })
     })
 
     app.get("/about", (req, res) => {
-        res.send("This is about page");
+        //res.send("This is about page");
+        res.render("about", { todos: todos })
     })
 
     app.get("/profile/:id", (req, res) => {
-        res.send("you requested user no: " + req.params.id)
+        data = {
+            name: req.params.id
+        }
+        //res.send("you requested user no: " + req.params.id)
+        res.render("home", { data: data })
     })
 
 
