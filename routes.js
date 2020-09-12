@@ -8,9 +8,9 @@ const path = require("path");
 mongoose.connect(mongourl)
 
 var data = {
-    name: "anil",
-    status: "coder",
-    country: "India"
+    name: "anil kumar",
+    status: "programmer",
+    state: "Bokaro Steel City (Jharkhand)"
 }
 
 const todos = ["code", "eat", "sleep"];
@@ -28,6 +28,10 @@ module.exports = (app) => {
     app.get("/work", (req, res) => {
         //res.send("This is work page");
         res.render("work", { todos: todos })
+    })
+
+    app.get("/about", (req, res) => {
+        res.render("about", { data: data })
     })
 
     app.get("/profile/:id", (req, res) => {
@@ -53,8 +57,6 @@ module.exports = (app) => {
         console.log(req.body)
         res.send(JSON.stringify(req.body))
     })
-
-
 
     app.post("/send", (req, res) => {
         console.log(req.body);
