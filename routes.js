@@ -13,7 +13,7 @@ var data = {
     state: "Bokaro Steel City (Jharkhand)"
 }
 
-const todos = ["code", "eat", "sleep"];
+var todos = ["code", "eat", "sleep"];
 
 module.exports = (app) => {
 
@@ -56,13 +56,22 @@ module.exports = (app) => {
     app.post('/sent-form-data', (req, res) => {
         console.log(req.body)
         res.send(JSON.stringify(req.body))
-    })
+    });
+
+    app.delete("/remove/:id", (req, res) => {
+        todos = todos.map(item => {
+            if (item !== req.params.id) {
+                return item
+            }
+        })
+        console.log(req.params.id);
+        res.send(todos);
+    });
 
     app.post("/send", (req, res) => {
         console.log(req.body);
         todos.push(req.body.item);
         res.send(todos);
-
 
         // const item = "fukcoff";
         // const Item = new Wish({
@@ -76,7 +85,7 @@ module.exports = (app) => {
         // console.log(data)
     })
     /*
-
+ 
     app.get("/sendHtmlFile", (req, res) => {
         // res.sendFile(path.join(__dirname + "/index.html"))
         // OR

@@ -11,7 +11,7 @@
 
   <body>
     <%- include ('partials/nav') -%>
-    <h1>Rendering WORK.ejs page</h1>
+    <h1>Rendering WORK page (using eJS viewEngine)</h1>
 
     <form id="workForm">
       <input type="text" name="item" />
@@ -20,11 +20,21 @@
 
     <ul>
       <% todos .forEach(item =>{ %>
-      <li><%= item %></li>
+      <li onclick="deleteMe(this)"><%= item %></li>
       <% }) %>
     </ul>
 
     <script>
+      function deleteMe(item) {
+        fetch("http://localhost:5000/remove/" + item.innerText, {
+          method: "delete",
+        })
+          .then((res) => res.json())
+          .then((res2) => {
+            console.log(res2);
+            location.reload();
+          });
+      }
       document.getElementById("workForm").onsubmit = (e) => {
         e.preventDefault();
         const url = "http://localhost:5000/send";
