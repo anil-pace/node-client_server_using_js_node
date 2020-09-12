@@ -12,20 +12,19 @@
   <body>
     <%- include ('partials/nav') -%>
     <h1>Rendering WORK page (using eJS viewEngine)</h1>
+    <div class="todosClass">
+      <form id="workForm">
+        <input type="text" name="item" />
+        <button type="submit" class="waves-effect waves-light btn">ADD</button>
+      </form>
 
-    <form id="workForm">
-      <input type="text" name="item" />
-      <button type="submit" class="waves-effect waves-light btn">ADD</button>
-    </form>
-
-    <ul>
-      <% todos .forEach(item =>{ %>
-      <li onclick="deleteMe(this)"><%= item %></li>
-      <% }) %>
-    </ul>
-
+      <ul>
+        <% todos .forEach(item =>{ %>
+        <li onclick="deleteMe(this)"><%= item %></li>
+        <% }) %>
+      </ul>
+    </div>
     <script src="/script.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
